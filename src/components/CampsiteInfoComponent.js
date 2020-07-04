@@ -26,8 +26,8 @@ class CampsiteInfo extends Component{
                         comments.map(comment => {
                             return(
                             <div>
-                                <p>{comment.text}</p>
-                                <p>-- {comment.auther}{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
+                                <p>{comment.text} <br />
+                                -- {comment.auther},{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
                             </div>
                             );
                         })
