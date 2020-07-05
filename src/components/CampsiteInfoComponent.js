@@ -17,7 +17,9 @@ class CampsiteInfo extends Component{
         );
     }
 
-    renderComments(comments){
+    // AMY INSTRUCTOR: misspelling of 'author' at line 32
+
+    renderComments(comments){S
         if(comments){
             return(
                 <div className="col-md-5 m-1">
