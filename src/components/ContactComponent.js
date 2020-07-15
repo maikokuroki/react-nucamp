@@ -73,6 +73,8 @@ class Contact extends Component {
     }
     
     render(){
+        const errors = this.validate(this.state.firstName, this.state.lastName, this.state.phoneNum, this.state.email);    
+
         return (
         
             <div className="container">
