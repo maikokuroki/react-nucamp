@@ -57,8 +57,10 @@ class CommentForm extends Component {
 				
 				<Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
+					<Stagger in>
 						<ModalBody>
 							<LocalForm onSubmit={values => this.handleSubmit(values)}>
+							<Fade in>
 								<div className="form-group">
 									<Label htmlFor="rating" >Rating</Label>
 										<Control.select 
@@ -111,6 +113,7 @@ class CommentForm extends Component {
 									/>
 									
 								</div>
+								</Fade>
 								<Button type="submit" color="primary">
 									Submit
 								</Button>
@@ -118,6 +121,7 @@ class CommentForm extends Component {
 									
 							</LocalForm>
 						</ModalBody>
+						</Stagger>
                 </Modal>
 			</React.Fragment>
 		);
