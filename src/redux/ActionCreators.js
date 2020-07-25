@@ -156,8 +156,9 @@ export const fetchPartners = () => (dispatch) => {
     
     dispatch(partnersLoading());
 
-    return fetch(baseUrl + 'partners')
-        .then(response => {
+    return fetch(baseUrl + "partners")
+        .then(
+            (response) => {
                 if (response.ok) {
                     return response;
                 } else {
@@ -166,47 +167,43 @@ export const fetchPartners = () => (dispatch) => {
                     throw error;
                 }
             },
-            error => {
+            (error) => {
                 const errMess = new Error(error.message);
                 throw errMess;
             }
         )
-        .then(response => response.json())
-        .then(partners => dispatch(addPartners(partners)))
-        .catch(error => dispatch(partnersFailed(error.message)));
+        .then((response) => response.json())
+        .then((partners) => dispatch(addPartners(partners)))
+        .catch((error) => dispatch(partnersFailed(error.message)));
 };
 
 export const partnersLoading = () => ({
     type: ActionTypes.PARTNERS_LOADING
 });
 
-export const partnersFailed = errMess => ({
+export const partnersFailed = (errMess) => ({
     type: ActionTypes.PARTNERS_FAILED,
     payload: errMess
 });
 
-export const addPartners = partners => ({
+export const addPartners = (partners) => ({
     type: ActionTypes.ADD_PARTNERS,
     payload: partners
 });
 
 
-export const postFeedback = (campsiteId, rating, author, text) => dispatch => {
-    
-    const newComment = {
-        campsiteId: campsiteId,
-        rating: rating,
-        author: author,
-        text: text
-    };
-    newComment.date = new Date().toISOString();
+fetch(baseUrl + 'feedback')
+ .then(res => console.log(res));
 
-    return fetch(baseUrl + 'comments', {
+
+export const postFeedback = (feedback) => () => {
+
+    return fetch(baseUrl + 'feedback', {
             method: "POST",
-            body: JSON.stringify(newComment),
+            body: JSON.stringify(feedback),
             headers: {
                 "Content-Type": "application/json"
-            }
+            },
         })
         .then(response => {
                 if (response.ok) {
@@ -220,7 +217,7 @@ export const postFeedback = (campsiteId, rating, author, text) => dispatch => {
             error => { throw error; }
         )
         .then(response => response.json())
-        .then(response => dispatch(addComment(response)))
+        .then(feedback => alert(`Thank you for your feedback. ${JSON.stringify(feedback)}`))
         .catch(error => {
             console.log('post comment', error.message);
             alert('Your comment could not be posted\nError: ' + error.message);
